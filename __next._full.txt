@@ -1,0 +1,845 @@
+1:"$Sreact.fragment"
+2:I[39756,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js"],"default"]
+3:I[37457,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js"],"default"]
+5:I[97367,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js"],"OutletBoundary"]
+6:"$Sreact.suspense"
+8:I[97367,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js"],"ViewportBoundary"]
+a:I[97367,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js"],"MetadataBoundary"]
+c:I[68027,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js"],"default",1]
+:HL["/_next/static/chunks/0wwdikb_e3b_9.css","style"]
+:HL["/_next/static/media/797e433ab948586e-s.p.0.q-h669a_dqa.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/caa3a2e1cccd8315-s.p.16t1db8_9y2o~.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"c":["",""],"q":"","i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0wwdikb_e3b_9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0fsi8lw5utejl.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0d3tkj33oycf2.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","className":"geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased","children":["$","body",null,{"className":"min-h-full flex flex-col","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":[["$","$1","c",{"children":["$L4",[["$","script","script-0",{"src":"/_next/static/chunks/149.gcwb-69ip.js","async":true,"nonce":"$undefined"}]],["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]]}],{},null,false,null]},null,false,null],["$","$1","h",{"children":[null,["$","$L8",null,{"children":"$L9"}],["$","div",null,{"hidden":true,"children":["$","$La",null,{"children":["$","$6",null,{"name":"Next.Metadata","children":"$Lb"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],false]],"m":"$undefined","G":["$c",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0wwdikb_e3b_9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"5x76AodOqDgdtHL4UhLnc"}
+9:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+d:I[27201,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js"],"IconMark"]
+7:null
+b:[["$","title","0",{"children":"Personal Resume"}],["$","meta","1",{"name":"description","content":"A minimal Apple-inspired personal resume site"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.0x3dzn~oxb6tn.ico","sizes":"256x256","type":"image/x-icon"}],["$","$Ld","3",{}]]
+e:I[88489,["/_next/static/chunks/0fsi8lw5utejl.js","/_next/static/chunks/0d3tkj33oycf2.js","/_next/static/chunks/149.gcwb-69ip.js"],"default"]
+f:T1931,上一篇聊到，Transformer 本身并不天然感知顺序，所以需要额外注入位置信息。绝对位置编码直接告诉模型“当前 token 在第几位”，相对位置编码则更关注“两个 token 相隔多远”。
+
+这两种思路各有问题。绝对位置编码简单，但它把位置直接加到 token embedding 上，位置和内容混在一起；相对位置编码更符合 attention 的结构，但通常要额外改 attention score，形式上没那么干净。
+
+RoPE（Rotary Position Embedding）提供了一个很漂亮的折中：它用绝对位置来定义旋转角度，但在 query 和 key 做内积之后，真正起作用的是相对位置。
+
+# 从二维旋转说起
+
+先看一个二维向量：
+
+$$
+x =
+\begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix}
+$$
+
+如果把它旋转角度 $\theta$，可以写成：
+
+$$
+R_\theta x =
+\begin{bmatrix}
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix}
+$$
+
+也就是：
+
+$$
+R_\theta x =
+\begin{bmatrix}
+x_1\cos\theta - x_2\sin\theta \\
+x_1\sin\theta + x_2\cos\theta
+\end{bmatrix}
+$$
+
+RoPE 的基本想法很直接：不同位置的 token，用不同角度去旋转它的 query 和 key。
+
+假设第 $m$ 个 token 的 query 是 $q_m$，key 是 $k_m$，那么 RoPE 会做：
+
+$$
+q_m' = R_m q_m
+$$
+
+$$
+k_m' = R_m k_m
+$$
+
+其中 $R_m$ 是由位置 $m$ 决定的旋转矩阵。
+
+这里要注意一点：RoPE 不是把一个位置向量加到 token embedding 上，而是在 attention 里面，对 query 和 key 动手。这也是它和普通绝对位置编码很不一样的地方。
+
+# 高维向量怎么旋转
+
+真实模型里的 query 和 key 当然不是二维的，而是高维向量。RoPE 的处理方式是：把向量的维度两两分组，每两个维度当成一个二维平面，然后在每个二维平面里做旋转。
+
+比如：
+
+$$
+x = [x_1, x_2, x_3, x_4, \dots]
+$$
+
+可以分成：
+
+$$
+(x_1, x_2), (x_3, x_4), \dots
+$$
+
+每一组都旋转，但旋转速度不同。
+
+对第 $i$ 组维度，位置 $m$ 对应的角度通常写成：
+
+$$
+m\theta_i
+$$
+
+其中：
+
+$$
+\theta_i = 10000^{-2i/d}
+$$
+
+所以位置越靠后，旋转角度越大；不同维度组的 $\theta_i$ 不同，相当于有不同频率的“指针”。
+
+如此，对不同维度使用不同频率进行旋转，RoPE将位置信息注入了向量。
+
+# RoPE 中的相对位置计算
+
+RoPE 最关键的地方在 query 和 key 的点积。
+
+位置 $m$ 的 query 旋转后是：
+
+$$
+q_m' = R_m q_m
+$$
+
+位置 $n$ 的 key 旋转后是：
+
+$$
+k_n' = R_n k_n
+$$
+
+attention 里计算的是：
+
+$$
+(q_m')^\top k_n'
+$$
+
+代入进去：
+
+$$
+(q_m')^\top k_n'
+=
+(R_m q_m)^\top (R_n k_n)
+$$
+
+由于旋转矩阵满足：
+
+$$
+R_m^\top R_n = R_{n-m}
+$$
+
+所以：
+
+$$
+(R_m q_m)^\top (R_n k_n)
+=
+q_m^\top R_{n-m} k_n
+$$
+
+一开始我们明明用了两个绝对位置 $m$ 和 $n$，但点积之后，位置项变成了 $n-m$。也就是说，attention score 里真正出现的是两个 token 的相对距离。这就是 RoPE 最巧妙的地方：用绝对位置做旋转，最后在 attention 里留下相对位置。
+
+正如开篇所说， RoPE 是绝对位置和相对位置之间的折中。但更准确地说，它不是简单把二者拼起来，而是通过旋转矩阵把绝对位置转化成了相对位置信息。
+
+# 从复数角度理解
+
+RoPE 还有一个更简洁的理解方式：把每两个维度看成一个复数。
+
+比如二维向量：
+
+$$
+(x_1, x_2)
+$$
+
+可以看成：
+
+$$
+z = x_1 + ix_2
+$$
+
+二维旋转角度 $\theta$，等价于乘上：
+
+$$
+e^{i\theta}
+$$
+
+那么位置 $m$ 上的旋转就是：
+
+$$
+z_m' = z_m e^{im\theta}
+$$
+
+query 在位置 $m$，key 在位置 $n$，它们分别带上相位：
+
+$$
+e^{im\theta}, \quad e^{in\theta}
+$$
+
+做相似度计算时，两个相位相减，留下：
+
+$$
+e^{i(n-m)\theta}
+$$
+
+也还是相对位置 $n-m$。
+
+这个视角下，RoPE 像是在给每个 token 的 query 和 key 挂上一个“相位”。位置越靠后，相位转得越多。不同维度转速不同，于是模型就获得了一组多尺度的位置参考。
+
+# RoPE 的优与劣
+
+自回归模型预测下一个 token 时，光知道"我现在是第几个"基本没用，真正有用的是当前 token 和前面某个 token 的关系——上一个词是什么、那个左括号在哪里、这个变量之前在哪定义过、这句话呼应的是前文哪一段。而RoPE 把这种相对关系直接塞进了 attention 里。
+
+除此之外它还有几个好处。一是省掉了一张要学的位置 embedding 表，比 learned absolute positional embedding 更容易往训练长度之外推。二是实现简单，对 query 和 key 做个旋转就完事，不用给每个相对距离另外存参数。三是它和 causal attention 配合得很顺——反正自回归只看左边，RoPE 表达"当前位置离历史位置多远"刚好对口。
+
+所以现在很多大模型里都用它。
+
+但 RoPE 的底子是三角函数，三角函数有周期：
+
+$$
+\sin(\theta + 2\pi) = \sin\theta
+$$
+
+$$
+\cos(\theta + 2\pi) = \cos\theta
+$$
+
+转得够久，指针会绕回原地。
+
+之前说 RoPE 像一组指针。沿着这个比喻，时间足够长，指针总要回来。
+
+短序列里这不是问题，因为 RoPE 不是单一频率，而是多个频率叠在一起转。一个维度绕回来了，别的维度未必同步绕回来，整体上还能区分。
+
+长上下文里就麻烦了。
+
+训练时模型可能只见过 4K、8K 的长度，推理时你扔给它 32K、128K，位置 $m$ 变得很大，旋转角度 $m\theta_i$ 跑到了训练时根本没出现过的区域。两件事会同时发生：模型没见过这些相位的组合，attention 分布开始飘；远处的位置在某些频率上又恰好和近处对上了，发生位置混叠。
+
+所以 RoPE 能给任意长度"算出"一个位置编码，不代表模型真的能在那个长度上正常工作。
+
+算得出来是一回事，泛化得过去是另一回事。
+
+# 小结
+
+RoPE 不是“完美的位置编码”，而是一种很优雅、很实用、但也有边界的方法。它将绝对位置和相对距离连接了起来，同时依旧面对着长上下文的难题。
+
+下一篇可以顺着这个问题继续往下看。文本里，RoPE 的长距离问题可能表现为上下文利用变差；到了视频生成里，这个问题会更直观——模型可能不是简单忘掉前文，而是在生成很长时间后突然“回到开头”。10:T113c,在传统的深度学习中，模型往往可以捕捉到顺序信息，例如CNN通过局部窗口感知相邻关系、RNN天然按时间步处理序列。然而对于Transformer模型来说，顺序信息并不是天然易得的。
+
+# 为什么要位置编码
+
+从 Self-Attention 的公式来看
+
+$$\mathrm{Attention}(Q, K, V) = \mathrm{softmax}\!\left( \frac{Q K^{\top}}{\sqrt{d}} \right) V$$
+
+可见，这个运算对输入序列是置换等变的：把输入按某个顺序打乱，输出也只是按相同顺序打乱，不会出现"位置敏感"的差别。
+
+因此，把序列里的 token 整体打乱再喂进去，每个 token 看到的"邻居加权和"完全没变。例如
+，「我打你」和「你打我」用了同样一组词，意思却完全相反。如果模型只看 token 内容、不看位置，它没办法区分这两句话。
+
+在语言、时间序列、代码这些场景里，顺序本身就是语义的一部分，所以要让模型对顺序敏感，必须额外把位置信号注入进去。位置编码（positional encoding）就此诞生。
+
+至于注入的方式，大体有两条思路：要么把位置信息加到 token 表示上（绝对位置编码），要么直接介入 attention 的相似度计算（相对位置编码）。
+
+# 绝对位置编码
+
+最朴素的做法是给每个位置 $i$ 准备一个向量 $p_i$，加到对应的 token embedding $x_i$ 上：
+
+$$x_i' = x_i + p_i$$
+
+最经典的 $p_i$ 是 Vaswani 等人在 Attention is All You Need 里用的 sinusoidal 编码：
+
+$$\begin{aligned}
+\mathrm{PE}(\mathit{pos},\, 2k)\, &= \sin\!\left( \frac{\mathit{pos}}{10000^{\,2k/d}} \right) \\
+\mathrm{PE}(\mathit{pos},\, 2k{+}1) &= \cos\!\left( \frac{\mathit{pos}}{10000^{\,2k/d}} \right)
+\end{aligned}$$
+
+直觉上，每一对维度对应一个不同频率的正弦/余弦"指针"，把绝对位置写成一组多尺度的相位。频率以几何级数展开，模型就能同时看到细粒度的（相邻位置之差）和粗粒度的（句子两端之差）位置信号。这个形式还有一个有用的性质：$\mathrm{PE}(\mathit{pos} + k)$ 可以由 $\mathrm{PE}(\mathit{pos})$ 经过一个只依赖 $k$ 的线性变换得到，理论上有助于模型学到相对距离。
+
+另一种常见做法是把 $p_i$ 当作可学习参数，BERT 用的就是这种。它实现简单、表达能力强，但训练时见过的最大长度 $L$ 之外的位置就没有对应的 embedding，外推能力很差。
+
+绝对位置编码用起来很直接，但有两个不太愉快的地方。一是位置信号通过加法注入，token 内容和位置在 attention 内积里耦合得不太干净。二是它编的是"绝对坐标"，但很多语言现象其实只依赖相对距离——"上一个动词在哪儿"这种关系，跟它出现在第 7 位还是第 70 位关系不大。
+
+# 相对位置编码
+
+相对位置编码换一个角度：与其告诉模型"你在第几位"，不如告诉它"你和我隔了多远"。它把位置 $i$ 和 $j$ 之间的距离 $i-j$ 直接写进 attention 计算里。
+
+Shaw 等人 2018 年的早期形式是在 attention 里加一项相对位置向量：
+
+$$a_{ij} \propto q_i \cdot (k_j + r_{i-j})$$
+
+其中 $r_{i-j}$ 是只依赖相对距离的可学习向量。T5 进一步简化，把它做成 attention logits 上的一个标量偏置：
+
+$$a_{ij} \propto q_i \cdot k_j + b(i - j)$$
+
+$b(\cdot)$ 通常用一个分桶函数把相对距离压到有限个桶里，便于参数共享，也让超出训练长度的位置有一个合理的回退。再后来的 ALiBi 干脆不学习 $b$，直接用一个线性的 $-m \cdot |i - j|$，让远距离 token 的注意力以一个固定速率衰减——这种"硬编码"反而带来了相当不错的长度外推能力。
+
+相对位置编码的好处是天然平移不变：把整个序列整体平移一段距离，attention 矩阵不变。这和很多语言现象的几何性质更吻合，也让模型在长上下文上的表现往往更稳。
+
+# 小结
+
+到这里能看到一个张力：绝对位置编码形式简单，但和 attention 的耦合不优雅；相对位置编码几何上更自然，但实现上得侵入 attention 内部，写起来比较零碎。RoPE（Rotary Position Embedding）是一个有意思的折中——它把位置信息编码成 query 和 key 上的"旋转"，从绝对位置出发，却让 attention 的内积只依赖相对位置。下一篇展开。
+11:T24d2,前回の記事では、Transformer はそのままだと順序を感じ取れず、位置情報を別途注入する必要があるという話をしました。絶対位置エンコーディングはモデルに「いま何番目のトークンにいるか」を直接伝える方式で、相対位置エンコーディングは「二つのトークンがどれだけ離れているか」のほうに重きを置く方式です。
+
+この二つの考え方には、それぞれ問題があります。絶対位置エンコーディングはシンプルですが、位置をトークン埋め込みにそのまま足してしまうため、位置と内容が混ざってしまいます。一方、相対位置エンコーディングは attention の構造に合っていますが、attention score を別途いじる必要があり、形としては少し綺麗ではありません。
+
+RoPE（Rotary Position Embedding）はこの間の、とても美しい折衷を与えてくれます。絶対位置で回転角度を定義しておきながら、query と key の内積を取った後では、本当に効いてくるのは相対位置だけになります。
+
+# 二次元の回転から始める
+
+まず二次元のベクトルを見ます：
+
+$$
+x =
+\begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix}
+$$
+
+これを角度 $\theta$ だけ回転させる操作は次のように書けます：
+
+$$
+R_\theta x =
+\begin{bmatrix}
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix}
+$$
+
+つまり：
+
+$$
+R_\theta x =
+\begin{bmatrix}
+x_1\cos\theta - x_2\sin\theta \\
+x_1\sin\theta + x_2\cos\theta
+\end{bmatrix}
+$$
+
+RoPE の発想はとても素朴で、トークンの位置ごとに違う角度を使って、その query と key を回す、というものです。
+
+第 $m$ トークンの query を $q_m$、key を $k_m$ とすると、RoPE は次のことを行います：
+
+$$
+q_m' = R_m q_m
+$$
+
+$$
+k_m' = R_m k_m
+$$
+
+ここで $R_m$ は、位置 $m$ から決まる回転行列です。
+
+ひとつ注意したいのは、RoPE は位置ベクトルをトークン埋め込みに足し込むのではなく、attention の中で query と key そのものに手を入れる、という点です。これは普通の絶対位置エンコーディングと、はっきり違うところです。
+
+# 高次元ベクトルの回転
+
+実際のモデルの query と key は二次元ではなく、高次元ベクトルです。RoPE はこれを次のように扱います：ベクトルの次元を二つずつまとめてペアにし、各ペアを一つの二次元平面とみなして、その平面内で回転させるのです。
+
+たとえば：
+
+$$
+x = [x_1, x_2, x_3, x_4, \dots]
+$$
+
+を：
+
+$$
+(x_1, x_2), (x_3, x_4), \dots
+$$
+
+のように分けます。
+
+それぞれのペアを回しますが、回転の速さは異なります。
+
+第 $i$ 番目のペアについて、位置 $m$ に対応する角度は通常こう書かれます：
+
+$$
+m\theta_i
+$$
+
+ただし：
+
+$$
+\theta_i = 10000^{-2i/d}
+$$
+
+です。位置が後ろに行くほど回転角は大きくなり、ペアが違えば $\theta_i$ も違うので、異なる周波数の「指針」が並んでいるようなものです。
+
+このように、次元ごとに異なる周波数で回すことで、RoPE はベクトルに位置情報を注入します。
+
+# RoPE における相対位置の現れ方
+
+RoPE のいちばん大事なところは、query と key の内積です。
+
+位置 $m$ の query を回した結果は：
+
+$$
+q_m' = R_m q_m
+$$
+
+位置 $n$ の key を回した結果は：
+
+$$
+k_n' = R_n k_n
+$$
+
+attention で計算するのは：
+
+$$
+(q_m')^\top k_n'
+$$
+
+これに代入すると：
+
+$$
+(q_m')^\top k_n'
+=
+(R_m q_m)^\top (R_n k_n)
+$$
+
+回転行列は次の関係を満たすので：
+
+$$
+R_m^\top R_n = R_{n-m}
+$$
+
+結果はこうなります：
+
+$$
+(R_m q_m)^\top (R_n k_n)
+=
+q_m^\top R_{n-m} k_n
+$$
+
+最初は二つの絶対位置 $m$ と $n$ を使っていたのに、内積を取った後では位置の項が $n-m$ になっています。つまり、attention score に実際に現れるのは、二つのトークンの相対距離です。これが RoPE のいちばん巧妙なところです——絶対位置で回しておきながら、attention に残るのは相対位置、というわけです。
+
+冒頭で述べたとおり、RoPE は絶対位置と相対位置の折衷です。ただし、二つを単に貼り合わせているのではなく、回転行列を通して絶対位置を相対位置情報に変換している、と表現するほうが正確です。
+
+# 複素数で見る
+
+RoPE には、もっと簡潔な見方もあります。次元を二つずつまとめて、それを一つの複素数として扱う、という見方です。
+
+二次元ベクトル：
+
+$$
+(x_1, x_2)
+$$
+
+は次のように見なせます：
+
+$$
+z = x_1 + ix_2
+$$
+
+二次元回転（角度 $\theta$）は、次の数を掛けることに相当します：
+
+$$
+e^{i\theta}
+$$
+
+すると、位置 $m$ における回転は：
+
+$$
+z_m' = z_m e^{im\theta}
+$$
+
+になります。位置 $m$ の query と位置 $n$ の key は、それぞれ次の位相を持ちます：
+
+$$
+e^{im\theta}, \quad e^{in\theta}
+$$
+
+類似度を計算するとき、二つの位相が打ち消し合って残るのは：
+
+$$
+e^{i(n-m)\theta}
+$$
+
+——やはり相対位置 $n-m$ です。
+
+この視点から見ると、RoPE は各トークンの query と key に「位相」をつけて回しているようなものです。位置が後ろになるほど位相がよく回り、次元によって回転速度が違うので、モデルは多スケールの位置基準を一度に得ることができます。
+
+# RoPE の長所と短所
+
+自己回帰モデルが次のトークンを予測するとき、「いま何番目にいるか」自体は基本的に役に立ちません。本当に役に立つのは、現在のトークンと過去のあるトークンとの関係です——直前の単語は何か、対応する開き括弧はどこにあるか、この変数はどこで定義されたか、いまの一文がどの段落と呼応しているか。RoPE はこうした相対関係を、attention の中に直接埋め込みます。
+
+それ以外にもいくつかの利点があります。一つは、学習可能な位置埋め込みテーブルを抱えなくて済むので、学習時長を超える領域への外挿が学習済み絶対位置埋め込みよりもずっと素直に効くこと。二つ目は、実装がシンプルで、query と key を回すだけで済み、相対距離ごとに別途パラメータを持つ必要がないこと。三つ目は、causal attention と相性が良いこと——どうせ自己回帰では左側しか見ないので、RoPE が表現する「現在位置と過去位置の距離」がちょうど噛み合います。
+
+そういうわけで、いまの大規模モデルの多くで採用されています。
+
+ただ、RoPE の土台は三角関数であり、三角関数には周期があります：
+
+$$
+\sin(\theta + 2\pi) = \sin\theta
+$$
+
+$$
+\cos(\theta + 2\pi) = \cos\theta
+$$
+
+長く回せば、針はもとの位置に戻ってきます。
+
+先ほど RoPE を一群の指針に喩えましたが、その比喩で言えば——時間が十分に長ければ、指針はかならず一周して戻ってきます。
+
+短い系列ならこれは問題になりません。RoPE は単一の周波数ではなく、複数の周波数を重ねて回しているからです。ある次元が一周しても、他の次元が同期して一周するとは限らず、全体として系列はまだ区別できます。
+
+長い文脈になると話は変わります。
+
+学習時には 4K や 8K の長さしか見ていなかったモデルに、推論時に 32K や 128K を投げると、位置 $m$ が非常に大きくなり、回転角 $m\theta_i$ は学習時にはまったく見たことのない領域に入ってしまいます。すると同時に二つのことが起こります。一つは、モデルがそんな位相の組み合わせを見たことがなく、attention 分布が崩れ始めること。もう一つは、遠くの位置がある周波数でちょうど近くの位置と重なってしまい、位置の混信（aliasing）が起こることです。
+
+つまり、RoPE が任意の長さに対して位置エンコーディングを「計算できる」ことと、モデルがその長さで実際に正常に動くこととは、別の話です。
+
+計算できるのと、汎化できるのとは別物です。
+
+# まとめ
+
+RoPE は「完璧な位置エンコーディング」ではなく、とても優雅で実用的な、しかし限界もある手法です。絶対位置と相対距離をうまく繋ぎながら、それでも長文脈の難題には依然として直面しています。
+
+次回は、この問題をさらに追ってみるつもりです。テキストでは、RoPE の長距離の問題は「文脈の利用が悪くなる」という形で現れるかもしれません。動画生成にまで至ると、もっと直感的に表れます——モデルは単に前の内容を忘れるのではなく、長い時間生成した後で、突然「最初に戻ってしまう」という形で現れる可能性があるのです。
+12:T1890,従来の深層学習では、モデルのアーキテクチャ自体が順序情報をある程度捉えてくれていました。CNN は局所窓を通して隣接関係を見ますし、RNN はそもそも時刻ごとに系列を処理します。しかし Transformer の場合、順序情報は自動的には手に入りません。
+
+# なぜ位置エンコーディングが必要か
+
+Self-Attention の中核となる演算
+
+$$\mathrm{Attention}(Q, K, V) = \mathrm{softmax}\!\left( \frac{Q K^{\top}}{\sqrt{d}} \right) V$$
+
+は、入力系列に対して置換同変です。入力をある順序で並べ替えれば出力も同じように並び替わるだけで、「位置に敏感な」差は出てきません。
+
+つまり、系列のトークン全体を並べ替えてから入力しても、それぞれのトークンが見る「近傍の重み付き和」は変わりません。たとえば「私があなたを殴る」と「あなたが私を殴る」はまったく同じ語彙を使っていますが、意味は正反対です。トークンの内容だけを見て、位置を見ないモデルは、この二つを区別できません。
+
+言語、時系列、コードのように、順序そのものが意味の一部となる場面では、モデルを順序に敏感にするために、何らかの形で位置情報を別途注入する必要があります。位置エンコーディング（positional encoding）はそのための仕組みです。
+
+注入のしかたは大きく二つに分かれます。位置情報をトークン表現に加える方法（絶対位置エンコーディング）と、attention の類似度計算そのものに介入する方法（相対位置エンコーディング）です。
+
+# 絶対位置エンコーディング
+
+もっとも素朴なやり方は、各位置 $i$ にベクトル $p_i$ を一つ用意し、対応するトークン埋め込み $x_i$ に足し合わせるというものです：
+
+$$x_i' = x_i + p_i$$
+
+最も有名な $p_i$ は、Vaswani らが Attention is All You Need で用いた sinusoidal 位置エンコーディングです：
+
+$$\begin{aligned}
+\mathrm{PE}(\mathit{pos},\, 2k)\, &= \sin\!\left( \frac{\mathit{pos}}{10000^{\,2k/d}} \right) \\
+\mathrm{PE}(\mathit{pos},\, 2k{+}1) &= \cos\!\left( \frac{\mathit{pos}}{10000^{\,2k/d}} \right)
+\end{aligned}$$
+
+直感的には、次元のペアごとに異なる周波数の sin/cos の「針」が割り当てられ、絶対位置が複数スケールの位相として書き表されます。周波数が幾何級数的に広がっているので、モデルは細かい違い（隣接位置の差）と粗い違い（文の両端の差）の両方を一度に見ることができます。さらに有用な性質として、$\mathrm{PE}(\mathit{pos} + k)$ は $k$ にだけ依存する線形変換で $\mathrm{PE}(\mathit{pos})$ から得られるので、原理的には相対距離の学習にも寄与します。
+
+もう一つよくあるやり方は、$p_i$ を学習可能なパラメータとして扱うものです。BERT で使われているのがこれです。実装が簡単で表現力も十分ですが、訓練時に見た最大長 $L$ を超える位置には対応する埋め込みが存在しないため、外挿性能はかなり弱くなります。
+
+絶対位置エンコーディングは扱いやすい一方で、あまり気持ちのよくない点が二つあります。一つ目は、位置情報が加算で注入されるため、attention の内積の中でトークン内容と位置がきれいに分離されないこと。二つ目は、エンコードしているのが「絶対座標」だということです。多くの言語現象は実際には相対距離だけに依存しており——「直前の動詞はどこか」のような関係は、それが第 7 位にあるか第 70 位にあるかとはほとんど関係がありません。
+
+# 相対位置エンコーディング
+
+相対位置エンコーディングは視点を逆にします。「あなたが何番目にいるか」ではなく「あなたと私がどれだけ離れているか」をモデルに伝える、というものです。位置 $i$ と $j$ の間の距離 $i-j$ を、attention の計算に直接書き込みます。
+
+Shaw らが 2018 年に提案した初期の形式は、attention の内積に相対位置ベクトルを一項加えるものです：
+
+$$a_{ij} \propto q_i \cdot (k_j + r_{i-j})$$
+
+ここで $r_{i-j}$ は、相対距離だけに依存する学習可能なベクトルです。T5 はこれをさらに単純化し、attention logits 上のスカラーバイアスにしました：
+
+$$a_{ij} \propto q_i \cdot k_j + b(i - j)$$
+
+$b(\cdot)$ は通常、相対距離を有限個のバケットに圧縮するバケット関数で、パラメータ共有がしやすく、訓練長を超えた位置にも妥当なフォールバックを与えてくれます。さらに ALiBi はもう一歩進んで $b$ を学習せず、単純な線形 $-m \cdot |i - j|$ を使い、遠いトークンへの attention を一定の速度で減衰させます。この「ハードコード」が、長さ外挿でかえって良い性能を出すというのは面白いところです。
+
+相対位置エンコーディングの良いところは、自然と平行移動不変性を持つことです。系列全体をある量だけずらしても、attention 行列は変わりません。多くの言語現象の幾何的な性質に近く、長文脈での挙動も安定しやすくなります。
+
+# まとめ
+
+ここまで来ると一つの緊張関係が見えてきます。絶対位置エンコーディングは形がシンプルですが、attention との結びつきは少しぎこちない。相対位置エンコーディングは幾何的に自然ですが、attention の内側に手を入れる必要があり、実装はやや断片的になります。RoPE（Rotary Position Embedding）はその間の興味深い妥協で、位置情報を query と key にかかる「回転」としてエンコードします。出発点は絶対位置でありながら、attention の内積は相対位置だけに依存する——次回はそこを詳しく見ていきます。
+13:T1d2c,In the previous post we noted that Transformers do not naturally perceive order, so position information has to be injected from somewhere. Absolute positional encoding tells the model directly "what position the current token is at"; relative positional encoding cares more about "how far apart two tokens are."
+
+Each approach has its own awkwardness. Absolute positional encoding is simple, but it adds position straight onto the token embedding, mixing position and content. Relative positional encoding fits attention's structure better, but typically requires modifying the attention score, leaving things less clean in form.
+
+RoPE (Rotary Position Embedding) offers a beautiful compromise: it uses absolute positions to define rotation angles, but after the inner product between query and key, what actually shows up is the relative position.
+
+# Starting from a 2D rotation
+
+Consider a two-dimensional vector:
+
+$$
+x =
+\begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix}
+$$
+
+Rotating it by an angle $\theta$ can be written as:
+
+$$
+R_\theta x =
+\begin{bmatrix}
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix}
+$$
+
+That is:
+
+$$
+R_\theta x =
+\begin{bmatrix}
+x_1\cos\theta - x_2\sin\theta \\
+x_1\sin\theta + x_2\cos\theta
+\end{bmatrix}
+$$
+
+The basic idea of RoPE is direct: rotate the query and key of each token by an angle determined by its position.
+
+If the query of the $m$-th token is $q_m$ and the key is $k_m$, then RoPE applies:
+
+$$
+q_m' = R_m q_m
+$$
+
+$$
+k_m' = R_m k_m
+$$
+
+where $R_m$ is the rotation matrix determined by position $m$.
+
+One thing to note: RoPE does not add a position vector onto the token embedding — instead it acts on the query and key inside attention. That is what sets it apart from ordinary absolute positional encoding.
+
+# Rotating high-dimensional vectors
+
+Real models do not have two-dimensional queries and keys, of course; they have high-dimensional ones. RoPE handles this by grouping the dimensions into pairs, treating each pair as a 2D plane, and rotating within that plane.
+
+For example:
+
+$$
+x = [x_1, x_2, x_3, x_4, \dots]
+$$
+
+is split into:
+
+$$
+(x_1, x_2), (x_3, x_4), \dots
+$$
+
+Each pair is rotated, but at a different speed.
+
+For the $i$-th pair of dimensions, the angle at position $m$ is usually written as:
+
+$$
+m\theta_i
+$$
+
+where:
+
+$$
+\theta_i = 10000^{-2i/d}
+$$
+
+So later positions get larger rotation angles, and different dimension pairs have different $\theta_i$ — a set of "needles" running at different frequencies.
+
+In this way, by rotating different dimension pairs at different frequencies, RoPE injects position information into the vector.
+
+# How relative position appears in RoPE
+
+The most important step in RoPE is the inner product between query and key.
+
+The query at position $m$, after rotation, is:
+
+$$
+q_m' = R_m q_m
+$$
+
+The key at position $n$, after rotation, is:
+
+$$
+k_n' = R_n k_n
+$$
+
+Attention computes:
+
+$$
+(q_m')^\top k_n'
+$$
+
+Plugging in:
+
+$$
+(q_m')^\top k_n'
+=
+(R_m q_m)^\top (R_n k_n)
+$$
+
+Since rotation matrices satisfy:
+
+$$
+R_m^\top R_n = R_{n-m}
+$$
+
+we get:
+
+$$
+(R_m q_m)^\top (R_n k_n)
+=
+q_m^\top R_{n-m} k_n
+$$
+
+We started by using two absolute positions $m$ and $n$, but after the inner product the position term has become $n-m$. In other words, what actually appears inside the attention score is the relative distance between the two tokens. That is the cleverest part of RoPE: rotate using absolute positions, and what is left in attention is the relative position.
+
+As we said at the start, RoPE is a compromise between absolute and relative positional encoding. More precisely, it is not a simple stitching together of the two — it converts absolute positions into relative-position information through rotation matrices.
+
+# A complex-number view
+
+There is an even cleaner way to think about RoPE: treat each pair of dimensions as a single complex number.
+
+A 2D vector
+
+$$
+(x_1, x_2)
+$$
+
+can be viewed as:
+
+$$
+z = x_1 + ix_2
+$$
+
+A 2D rotation by angle $\theta$ is equivalent to multiplying by:
+
+$$
+e^{i\theta}
+$$
+
+So the rotation at position $m$ is:
+
+$$
+z_m' = z_m e^{im\theta}
+$$
+
+The query at position $m$ and the key at position $n$ pick up phases:
+
+$$
+e^{im\theta}, \quad e^{in\theta}
+$$
+
+When the similarity is computed, the two phases combine into:
+
+$$
+e^{i(n-m)\theta}
+$$
+
+— again the relative position $n-m$.
+
+In this view, RoPE attaches a "phase" to each token's query and key. The further along, the more the phase has turned. Different dimensions turn at different speeds, so the model gets a multi-scale set of position references at once.
+
+# Strengths and weaknesses
+
+When an autoregressive model predicts the next token, knowing "what position I am at" on its own is largely useless; what is actually useful is the relationship between the current token and some earlier one — what was the previous word, where is that opening parenthesis, where was this variable defined, which earlier passage does this sentence echo. RoPE plants this kind of relative relationship directly into attention.
+
+It also has a few other advantages. One: it removes the need for a learnable position embedding table, and extrapolates beyond the training length more gracefully than learned absolute positional embeddings. Two: it is simple to implement — just rotate the query and key, with no extra parameters per relative distance to store. Three: it pairs nicely with causal attention — autoregression only looks left anyway, and RoPE expresses "how far the current position is from past positions" in exactly the right form.
+
+That is why so many large models use it now.
+
+But RoPE is built on trigonometric functions, and trigonometric functions are periodic:
+
+$$
+\sin(\theta + 2\pi) = \sin\theta
+$$
+
+$$
+\cos(\theta + 2\pi) = \cos\theta
+$$
+
+Spin long enough and the needle comes back to where it started.
+
+We described RoPE earlier as a set of needles. Following that analogy: given enough time, a needle always returns.
+
+In short sequences this is not a problem, because RoPE is not a single frequency but a stack of many frequencies turning at once. One dimension may have wrapped around, but others have not necessarily wrapped at the same time, so overall the sequence is still distinguishable.
+
+In long contexts it becomes a problem.
+
+The model may have only seen lengths of 4K or 8K during training; at inference you hand it 32K or 128K, position $m$ becomes very large, and the rotation angles $m\theta_i$ enter regions that simply did not exist during training. Two things happen at once: the model has never seen these phase combinations and the attention distribution starts to drift; and far-away positions end up coinciding with nearby ones at certain frequencies, producing aliasing.
+
+So the fact that RoPE can "compute" a positional encoding for arbitrary lengths does not mean the model can actually function at those lengths.
+
+Computing it is one thing; generalizing to it is another.
+
+# Wrap-up
+
+RoPE is not "the perfect positional encoding" — it is an elegant, practical method, but one with limits. It links absolute position to relative distance, while still facing the long-context problem.
+
+The next post can follow this thread further. In text, RoPE's long-distance issues may show up as worse context utilization. In video generation it becomes more visceral — the model may not simply forget earlier content, but, after generating for a long time, suddenly "loop back to the beginning."
+14:T1469,In traditional deep learning, the architecture itself usually carries some sense of order — CNNs perceive neighborhood relationships through local windows, RNNs are built around stepping through a sequence in time. For Transformers, however, order does not come for free.
+
+# Why positional encoding
+
+Look at the core self-attention operation:
+
+$$\mathrm{Attention}(Q, K, V) = \mathrm{softmax}\!\left( \frac{Q K^{\top}}{\sqrt{d}} \right) V$$
+
+It is permutation-equivariant on the input sequence: shuffle the inputs in some order, and the outputs are simply shuffled the same way — there is no inherent "position-sensitive" behavior.
+
+So if you take all the tokens in a sequence and reorder them before feeding them in, the weighted sum of "neighbors" each token sees is unchanged. "I hit you" and "you hit me" use the exact same set of words yet mean opposite things; a model that only looks at token content, not position, has no way to tell them apart.
+
+In language, time series, code — anywhere order itself is part of the meaning — making the model order-sensitive requires injecting a position signal from somewhere outside the bare attention computation. That is what positional encoding is for.
+
+There are roughly two ways to do the injection: add position information to the token representation (absolute positional encoding), or intervene directly in attention's similarity computation (relative positional encoding).
+
+# Absolute positional encoding
+
+The simplest approach: for each position $i$, prepare a vector $p_i$ and add it to the corresponding token embedding $x_i$:
+
+$$x_i' = x_i + p_i$$
+
+The most well-known choice for $p_i$ is the sinusoidal encoding from Vaswani et al.'s Attention is All You Need:
+
+$$\begin{aligned}
+\mathrm{PE}(\mathit{pos},\, 2k)\, &= \sin\!\left( \frac{\mathit{pos}}{10000^{\,2k/d}} \right) \\
+\mathrm{PE}(\mathit{pos},\, 2k{+}1) &= \cos\!\left( \frac{\mathit{pos}}{10000^{\,2k/d}} \right)
+\end{aligned}$$
+
+Intuitively, each pair of dimensions corresponds to a sine/cosine "needle" at a different frequency, writing the absolute position as a multi-scale collection of phases. The frequencies fan out geometrically, so the model gets both fine-grained (adjacent-position differences) and coarse-grained (sentence-end-to-sentence-end differences) position signals at once. There is also a useful property: $\mathrm{PE}(\mathit{pos} + k)$ can be obtained from $\mathrm{PE}(\mathit{pos})$ via a linear transformation that depends only on $k$, which in principle helps the model pick up relative distance.
+
+Another common approach is to treat $p_i$ as a learnable parameter, as BERT does. It is simple to implement and has plenty of expressive power, but positions beyond the maximum length $L$ seen during training have no corresponding embedding, so extrapolation is poor.
+
+Absolute positional encoding is straightforward to use but has two unsatisfying aspects. One: position is injected by addition, so token content and position end up tangled inside the attention inner product in a way that is not very clean. Two: what it encodes is "absolute coordinates", whereas many linguistic phenomena depend only on relative distance — "where is the previous verb" is largely independent of whether that verb sits at position 7 or position 70.
+
+# Relative positional encoding
+
+Relative positional encoding takes the opposite angle: instead of telling the model "what position you are at," tell it "how far apart you and I are." It writes the distance $i-j$ between positions $i$ and $j$ directly into the attention computation.
+
+The early form by Shaw et al. (2018) adds a relative-position vector inside the attention term:
+
+$$a_{ij} \propto q_i \cdot (k_j + r_{i-j})$$
+
+where $r_{i-j}$ is a learnable vector that depends only on relative distance. T5 simplifies this further into a scalar bias on the attention logits:
+
+$$a_{ij} \propto q_i \cdot k_j + b(i - j)$$
+
+$b(\cdot)$ is usually a bucketing function that compresses relative distances into a finite number of buckets — convenient for parameter sharing, and giving positions beyond the training length a reasonable fallback. ALiBi takes another step and does not learn $b$ at all, instead using a simple linear $-m \cdot |i - j|$ that lets attention to far-away tokens decay at a fixed rate. This "hard-coded" choice turns out to extrapolate to longer sequences quite well.
+
+What is nice about relative positional encoding is that it is naturally translation-invariant: shifting the entire sequence by some amount leaves the attention matrix unchanged. That matches the geometry of many linguistic phenomena better, and tends to make models more stable in long-context settings.
+
+# Wrap-up
+
+By this point a tension has emerged: absolute positional encoding is simple in form but couples awkwardly with attention; relative positional encoding fits the geometry better but has to reach inside the attention computation and ends up a bit fragmented to implement. RoPE (Rotary Position Embedding) is an interesting compromise — it encodes position as a "rotation" applied to query and key, starting from absolute positions yet making the attention inner product depend only on relative position. More on that next time.
+4:["$","$Le",null,{"content":{"zh":{"nav":{"about":"关于","projects":"项目","blog":"博客"},"name":"胡洋","role":"一名 AI 研究员 & 开发者","title":"用技术做点有意思、也有用的东西","sections":{"about":{"title":"关于我","body":"致力于做一名精于 AI 的全栈开发者。\n喜欢从数学或物理的视角来解释 AI 算法背后的逻辑（尽管并不专业），也同样关注 AI 技术从底层原理到工程落地的完整过程。\n喜欢用自己的知识与技术栈去做一些好玩的事情，享受从想法到实现的过程。\n目前依旧在不断学习、持续积累中。"},"techStack":{"title":"技术栈","items":["Python","PyTorch","JAX","Transformers","Diffusers","Docker","Git","C/C++"]},"education":{"title":"教育","items":[{"period":"2026.04 — 2028.03","school":"东京大学 工学系研究科","degree":"工学硕士 技术经营战略学专攻","lab":{"name":"松尾・岩泽研究室","logoSrc":"/matsuo-logo-v3.png","logoAlt":"Matsuo-Iwasawa Lab logo"}},{"period":"2022.04 — 2026.03","school":"筑波大学 信息学群","degree":"信息媒体科学学士 信息媒体创成学类","lab":{"name":"落合阳一研究室","logoSrc":"/ochiai-logo.png","logoAlt":"Yoichi Ochiai Lab logo"}}]},"experience":{"title":"经历","items":[{"period":"2026.03 — 2026.05","role":"研究助理","company":"东京大学 松尾・岩泽研究室","summary":"深度参与研究项目设计，微调多个 Vision-Language-Action（VLA）模型并完成对比实验，同时在 HPC 集群上搭建模型训练环境。"},{"period":"2025.02 — 2026.02","role":"软件开发 / 技术企划","company":"AI机器人协会（AiRoA）","summary":"基于提供数据集微调已有 VLA 预训练模型，搭建基于 SimplerEnv 的机器人仿真测试环境，参与评估指标设计，并完成模型在实体机器人上的部署与真实测试。"}]},"contact":{"items":[{"label":"Email","value":"huyang0v0@gmail.com","href":"mailto:huyang0v0@gmail.com","icon":"email"},{"label":"GitHub","value":"github.com/Penrose0v0","href":"https://github.com/Penrose0v0","icon":"github"},{"label":"LinkedIn","value":"linkedin.com/in/yang-hu-0v0","href":"https://www.linkedin.com/in/yang-hu-0v0/","icon":"linkedin"}]},"projects":{"title":"项目","summaryLabel":"概要","descriptionLabel":"描述","items":[{"year":"2025","tech":["VLA","SimplerEnv","Robot Testing"],"thumbSrc":"/openpi-project-thumb.png","thumbAlt":"OpenPi VLA project thumbnail","gallery":[{"src":"/openpi-project-demo.mp4","alt":"OpenPi VLA project demo video","kind":"video","posterSrc":"/openpi-project-thumb.png"},{"src":"/openpi-project-thumb.png","alt":"OpenPi VLA project on real robot"}],"title":"VLA 模型微调与仿真/实机测试","summary":"基于 OpenPi 微调 VLA 模型，分别在仿真环境和实体机器人上进行测试，并参与评测规则制定。","description":"2025 年实习期间参与的项目。我使用 OpenPi 框架对 Vision-Language-Action 模型进行了微调，并分别在 SimplerEnv 仿真环境和真实机器人上完成了部署与测试。项目过程中还参与了评测指标与评估流程的设计工作。"},{"year":"2024","tech":["Ruby","LLM","Web"],"thumbSrc":"/llm-web-game-screenshot.png","thumbAlt":"LLM web game screenshot","gallery":[{"src":"/llm-web-game-demo.mp4","alt":"LLM web game demo video","kind":"video","posterSrc":"/llm-web-game-demo-poster.jpg"}],"title":"融合 LLM 的回合制网页游戏","summary":"基于 Ruby 开发的、融合大语言模型交互体验的回合制网页游戏。","description":"我围绕“语言模型如何增强玩家交互体验”这一方向，设计并实现了一款极简主义网页游戏。项目以宝可梦式回合制玩法为基础，将 LLM 融入游戏流程与反馈机制中，让原本简单的对战过程具备更强的故事性与叙事感。这个项目更像是一次关于叙事、交互与系统实现的综合实验，而不仅仅是为游戏接入一个模型接口。"},{"year":"2023","tech":["PHP","SQL","Web"],"thumbSrc":"/campus-map-social-app.png","thumbAlt":"Campus map social app screenshot","gallery":[{"src":"/campus-map-social-app.png","alt":"Campus map social app screenshot"}],"title":"校园地图社交 Web 应用","summary":"面向校园场景的社交 Web 应用，支持围绕地图位置进行留言与发布。","description":"我使用 PHP 与 SQL 搭建了一个以大学地图为核心的社交 Web 应用，让用户能够围绕具体地点发布内容、留下评论并共享校园周边信息。重点在于把地理语境和轻量社交交互自然结合起来。"},{"year":"2023","tech":["Python","PyTorch"],"thumbSrc":"/semg-architecture.png","thumbAlt":"sEMG model architecture diagram","gallery":[{"src":"/semg-architecture.png","alt":"sEMG model architecture diagram"}],"title":"基于深度学习的 sEMG 手势识别模型","summary":"基于深度学习的 sEMG 手势识别模型，面向肌电信号驱动的人机交互研究。","description":"这个项目聚焦于使用针对时序列的深度学习方法处理表面肌电（sEMG）信号，并完成手势识别模型的设计与实现，为更自然的人机接口提供技术基础。"},{"year":"2022","tech":["Raspberry Pi","MediaPipe","Fusion360"],"thumbSrc":"/ar-ui-demo-poster-v2.jpg","thumbAlt":"First frame of the AR glasses demo video","gallery":[{"src":"/ar-ui-demo.mp4","alt":"Gesture-driven AR glasses demo video","kind":"video","posterSrc":"/ar-ui-demo-poster.jpg"},{"src":"/ar-ui-sketch.png","alt":"AR glasses structural sketch"},{"src":"/ar-ui-prototype.png","alt":"AR glasses prototype photo"}],"title":"手势驱动的 AR 眼镜原型","summary":"在 Raspberry Pi 上实现基于手势识别的交互界面，并完成 AR 眼镜原型制作。","description":"在 Raspberry Pi 上结合 MediaPipe 构建了一个由手势识别驱动的 UI 原型，并基于此制作了一套利用分光棱镜实现显示叠加的 AR 眼镜系统。项目重点不仅在于完成手势识别本身，也在于探索更自然、低负担的无接触式交互方式。"}]},"blog":{"title":"博客","intro":"写一些值得留下的思绪。或关乎对算法的理解与追问，或关乎时代转向中的风声与暗流，亦或只是关乎日常一隅的微光与褶皱。将诸多思绪落成文字，任其慢慢堆叠沉淀，成为我理解世界的路径。","summaryLabel":"摘要","bodyLabel":"正文","items":[{"date":"2026.05","title":"浅谈位置编码 2","summary":"RoPE 怎样用旋转把绝对位置悄悄变成相对距离，又为何在长上下文里会失灵。","markdown":"$f"},{"date":"2026.05","title":"浅谈位置编码","summary":"为什么需要位置编码，绝对与相对编码各自的取舍。","markdown":"$10"}]}}},"ja":{"nav":{"about":"概要","projects":"プロジェクト","blog":"ブログ"},"name":"胡洋","role":"AI 研究者 & 開発者","title":"技術で、少し面白くて少し役に立つものを作る","sections":{"about":{"title":"自己紹介","body":"AI に精通したフルスタック開発者を目指しています。\n専門ではないものの、数学や物理の視点から AI アルゴリズムの背後にあるロジックを解き明かすことが好きで、AI 技術の基礎原理から実装・運用までの一連の流れにも関心を持っています。\n自分の知識と技術スタックを使って面白いものを作るのが好きで、アイデアから実装までのプロセスを楽しんでいます。\n今もなお、学び続け、日々積み重ねている最中です。"},"techStack":{"title":"技術スタック","items":["Python","PyTorch","JAX","Transformers","Diffusers","Docker","Git","C/C++"]},"education":{"title":"学歴","items":[{"period":"2026.04 — 2028.03","school":"東京大学 工学系研究科","degree":"工学修士 技術経営戦略学専攻","lab":{"name":"松尾・岩澤研究室","logoSrc":"/matsuo-logo-v3.png","logoAlt":"Matsuo-Iwasawa Lab logo"}},{"period":"2022.04 — 2026.03","school":"筑波大学 情報学群","degree":"情報メディア科学学士 情報メディア創成学類","lab":{"name":"落合陽一研究室","logoSrc":"/ochiai-logo.png","logoAlt":"Yoichi Ochiai Lab logo"}}]},"experience":{"title":"経歴","items":[{"period":"2026.03 — 2026.05","role":"リサーチアシスタント","company":"東京大学 松尾・岩澤研究室","summary":"研究プロジェクト設計に深く関与し、複数の Vision-Language-Action（VLA）モデルをファインチューニングして比較実験を実施。さらに HPC クラスタ上に学習環境を構築しました。"},{"period":"2025.02 — 2026.02","role":"ソフトウェア開発 / 技術企画","company":"AIロボット協会（AiRoA）","summary":"既存の VLA 事前学習モデルを提供データセットでファインチューニングし、SimplerEnv ベースのロボットシミュレーション環境を構築。評価指標設計に参加し、実機ロボットへのデプロイと実環境テストも担当。"}]},"contact":{"items":[{"label":"Email","value":"huyang0v0@gmail.com","href":"mailto:huyang0v0@gmail.com","icon":"email"},{"label":"GitHub","value":"github.com/Penrose0v0","href":"https://github.com/Penrose0v0","icon":"github"},{"label":"LinkedIn","value":"linkedin.com/in/yang-hu-0v0","href":"https://www.linkedin.com/in/yang-hu-0v0/","icon":"linkedin"}]},"projects":{"title":"プロジェクト","summaryLabel":"概要","descriptionLabel":"説明","items":[{"year":"2025","tech":"$4:props:content:zh:sections:projects:items:0:tech","thumbSrc":"/openpi-project-thumb.png","thumbAlt":"OpenPi VLA project thumbnail","gallery":"$4:props:content:zh:sections:projects:items:0:gallery","title":"VLA モデル微調整とシミュレーション/実機テスト","summary":"OpenPi で VLA モデルを微調整し、シミュレーション環境と実機ロボットの両方でテスト。評価ルールの策定にも参加。","description":"2025 年のインターンシップで参加したプロジェクト。OpenPi フレームワークを用いて Vision-Language-Action モデルの微調整を行い、SimplerEnv シミュレーション環境と実機ロボットの両方でデプロイ・テストを実施。評価指標と評価流程の設計にも関わりました。"},{"year":"2024","tech":"$4:props:content:zh:sections:projects:items:1:tech","thumbSrc":"/llm-web-game-screenshot.png","thumbAlt":"LLM web game screenshot","gallery":"$4:props:content:zh:sections:projects:items:1:gallery","title":"LLM を融合したターン制バトル Web ゲーム","summary":"Ruby で開発した、LLM による対話体験を取り入れたターン制 Web ゲーム。","description":"『言語モデルがプレイヤーのインタラクション体験をどう拡張できるか』をテーマに、ミニマルな Web ゲームを設計・実装しました。ゲームはポケモン風のターン制バトルをベースにしており、LLM を進行やフィードバック機構に組み込むことで、シンプルな対戦に物語性と叙事性を持たせています。このプロジェクトは、単にゲームへモデルを接続するのではなく、物語・インタラクション・システム実装をまとめて検証した総合的な実験です。"},{"year":"2023","tech":"$4:props:content:zh:sections:projects:items:2:tech","thumbSrc":"/campus-map-social-app.png","thumbAlt":"Campus map social app screenshot","gallery":"$4:props:content:zh:sections:projects:items:2:gallery","title":"キャンパスマップ連動型ソーシャル Web アプリ","summary":"大学マップ上の場所に紐づけて投稿やコメントができるソーシャル Web アプリ。","description":"PHP と SQL を用いて、大学キャンパスの地図を中心にしたソーシャル Web アプリケーションを開発しました。ユーザーが場所ごとに投稿やコメントを残せるようにし、地理情報と軽量なコミュニティ体験を自然につなぐことを重視しました。"},{"year":"2023","tech":"$4:props:content:zh:sections:projects:items:3:tech","thumbSrc":"/semg-architecture.png","thumbAlt":"sEMG model architecture diagram","gallery":"$4:props:content:zh:sections:projects:items:3:gallery","title":"深層学習ベースの sEMG ジェスチャー認識モデル","summary":"筋電信号駆動のヒューマンコンピュータインタラクション研究に向けた、深層学習ベースの sEMG ジェスチャー認識モデル。","description":"このプロジェクトでは、時系列向けの深層学習手法を用いて表面筋電（sEMG）信号を処理し、ジェスチャー認識モデルの設計と実装を行いました。より自然なヒューマンコンピュータインタフェースを実現するための技術基盤を目指したものです。"},{"year":"2022","tech":"$4:props:content:zh:sections:projects:items:4:tech","thumbSrc":"/ar-ui-demo-poster-v2.jpg","thumbAlt":"First frame of the AR glasses demo video","gallery":"$4:props:content:zh:sections:projects:items:4:gallery","title":"ジェスチャー駆動型 AR グラス試作機","summary":"Raspberry Pi 上でジェスチャー認識ベースの UI を実装し、AR グラスの試作機を制作。","description":"Raspberry Pi 上で MediaPipe と組み合わせ、ジェスチャー認識で駆動する UI プロトタイプを構築し、それをもとに分光プリズムによる表示重畳を用いた AR グラスシステムを制作しました。焦点はジェスチャー認識そのものだけでなく、より自然で負担の少ない非接触インタラクションを探ることにもありました。"}]},"blog":{"title":"ブログ","intro":"残すに値する思索を書き留める。アルゴリズムへの理解、時代の転回に漂う気配、あるいは日常の片隅の光。思いを言葉に定着させ、積み重ね、沈殿させる。それはやがて、私が世界を理解する道筋となる。","summaryLabel":"要約","bodyLabel":"本文","items":[{"date":"2026.05","title":"位置エンコーディングについて 2","summary":"RoPE は回転を通して絶対位置を相対距離へとそっと変換する——その仕組みと、長文脈で破綻する理由。","markdown":"$11"},{"date":"2026.05","title":"位置エンコーディングについて","summary":"なぜ位置エンコーディングが必要か、絶対と相対の違い。","markdown":"$12"}]}}},"en":{"nav":{"about":"About","projects":"Projects","blog":"Blog"},"name":"HU Yang","role":"An AI researcher & developer","title":"Building things with technology that feel interesting and useful","sections":{"about":{"title":"About","body":"Aspiring to become a full-stack developer with strong expertise in AI.\nI enjoy reasoning about the logic behind AI algorithms from a mathematical or physical perspective (though I am far from an expert), and I care just as much about the full path of AI — from underlying principles to engineering deployment.\nI love using my own knowledge and tech stack to build fun, playful things, and I genuinely enjoy the journey from idea to implementation.\nStill learning, still building, every day."},"techStack":{"title":"Tech Stack","items":["Python","PyTorch","JAX","Transformers","Diffusers","Docker","Git","C/C++"]},"education":{"title":"Education","items":[{"period":"Apr 2026 — Mar 2028","school":"The University of Tokyo","degree":"Master of Engineering, Technology Management for Innovation","lab":{"name":"Matsuo-Iwasawa Lab","logoSrc":"/matsuo-logo-v3.png","logoAlt":"Matsuo-Iwasawa Lab logo"}},{"period":"Apr 2022 — Mar 2026","school":"University of Tsukuba","degree":"Bachelor of Science in Media Sciences and Engineering","lab":{"name":"Yoichi Ochiai Lab","logoSrc":"/ochiai-logo.png","logoAlt":"Yoichi Ochiai Lab logo"}}]},"experience":{"title":"Experience","items":[{"period":"Mar 2026 — May 2026","role":"Research Assistant","company":"Matsuo-Iwasawa Lab, The University of Tokyo","summary":"Deeply involved in designing the research project, fine-tuned multiple Vision-Language-Action (VLA) models, conducted comparative experiments, and set up the model training environment on an HPC cluster."},{"period":"Feb 2025 — Feb 2026","role":"Software Developer / Technical Planner","company":"AI Robotics Association (AiRoA)","summary":"Fine-tuned an existing pre-trained VLA model using the provided dataset, built a robot simulation testing environment based on SimplerEnv, contributed to evaluation criteria design, and deployed the model on a physical robot for real-world testing."}]},"contact":{"items":[{"label":"Email","value":"huyang0v0@gmail.com","href":"mailto:huyang0v0@gmail.com","icon":"email"},{"label":"GitHub","value":"github.com/Penrose0v0","href":"https://github.com/Penrose0v0","icon":"github"},{"label":"LinkedIn","value":"linkedin.com/in/yang-hu-0v0","href":"https://www.linkedin.com/in/yang-hu-0v0/","icon":"linkedin"}]},"projects":{"title":"Projects","summaryLabel":"Summary","descriptionLabel":"Description","items":[{"year":"2025","tech":"$4:props:content:zh:sections:projects:items:0:tech","thumbSrc":"/openpi-project-thumb.png","thumbAlt":"OpenPi VLA project thumbnail","gallery":"$4:props:content:zh:sections:projects:items:0:gallery","title":"VLA Model Fine-tuning & Simulation/Real-world Testing","summary":"Fine-tuned VLA model using OpenPi, tested in simulation and real robot environments, and contributed to evaluation criteria design.","description":"Project participated in during 2025 internship. I fine-tuned a Vision-Language-Action model using the OpenPi framework and conducted deployment and testing both in SimplerEnv simulation and on a physical robot. I also contributed to designing evaluation metrics and assessment workflows."},{"year":"2024","tech":"$4:props:content:zh:sections:projects:items:1:tech","thumbSrc":"/llm-web-game-screenshot.png","thumbAlt":"LLM web game screenshot","gallery":"$4:props:content:zh:sections:projects:items:1:gallery","title":"LLM-Enhanced turn-based Web Game","summary":"A turn-based web game built in Ruby that integrates LLM-driven interaction into the player experience.","description":"This project explored how language models could enrich the player's interactive experience. I designed and implemented a minimalist web game built around Pokémon-style turn-based gameplay, then integrated an LLM into the game flow and feedback loop so that a simple battle system could carry stronger narrative and storytelling qualities. The result was less about attaching a model to a game and more about a combined experiment in narrative, interaction, and system design."},{"year":"2023","tech":"$4:props:content:zh:sections:projects:items:2:tech","thumbSrc":"/campus-map-social-app.png","thumbAlt":"Campus map social app screenshot","gallery":"$4:props:content:zh:sections:projects:items:2:gallery","title":"Campus Map Social Web App","summary":"A social web application that let users post and comment around locations on a university map.","description":"Built with PHP and SQL, this project centered on a campus map where users could leave posts and comments tied to specific locations. The main goal was to connect lightweight social interaction with spatial context in a way that felt practical and intuitive for everyday campus use."},{"year":"2023","tech":"$4:props:content:zh:sections:projects:items:3:tech","thumbSrc":"/semg-architecture.png","thumbAlt":"sEMG model architecture diagram","gallery":"$4:props:content:zh:sections:projects:items:3:gallery","title":"Deep Learning sEMG Gesture Recognition Model","summary":"A deep-learning-based sEMG gesture recognition model aimed at EMG-driven human-computer interaction research.","description":"This project focused on processing surface electromyography (sEMG) signals with deep learning methods designed for time-series data, and on building a gesture recognition model from that pipeline. The goal was to provide a technical foundation for more natural human-computer interfaces."},{"year":"2022","tech":"$4:props:content:zh:sections:projects:items:4:tech","thumbSrc":"/ar-ui-demo-poster-v2.jpg","thumbAlt":"First frame of the AR glasses demo video","gallery":"$4:props:content:zh:sections:projects:items:4:gallery","title":"Gesture-Driven AR Glasses Prototype","summary":"An AR glasses prototype with a gesture-based UI built on Raspberry Pi using MediaPipe.","description":"On Raspberry Pi, I built a gesture-recognition-driven UI prototype with MediaPipe and used it to create an AR glasses system that overlaid visuals through a beam-splitter prism design. The point of the project was not only to get gesture recognition working, but also to explore a more natural and lower-friction form of contactless interaction."}]},"blog":{"title":"Blog","intro":"Write down thoughts worth preserving: an understanding about algorithms, signs of a changing age, or small lights in everyday life. Let them settle into words until they become a path to understanding the world.","summaryLabel":"Summary","bodyLabel":"Body","items":[{"date":"2026.05","title":"A brief look at positional encoding 2","summary":"How RoPE quietly turns absolute positions into relative distances through rotation, and why it stops working at long context.","markdown":"$13"},{"date":"2026.05","title":"A brief look at positional encoding","summary":"Why positional encoding is needed, the trade-offs between absolute and relative variants.","markdown":"$14"}]}}}},"localeLabels":[{"key":"zh","label":"中文"},{"key":"ja","label":"日本語"},{"key":"en","label":"English"}]}]
